@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Classification Result</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin: 20px;
+        }
+        container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .result-container {
+            background-color: #ffffff;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        h2 {
+            color: #007bff;
+        }
+        .label-container {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .label {
+            font-weight: bold;
+        }
+        .confidence {
+            color: #28a745;
+        }
+        .prediction-container {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <container>
+        <header>
+            <h1>Text Classification Result</h1>
+        </header>
+        <div class="result-container">
+            <h2>Input Text:</h2>
+            <p>{{ text }}</p>
+            <h2>Classification Result:</h2>
+            {% for classification in result %}
+                <div class="label-container">
+                    <p class="label">Label: {{ classification.prediction }}</p>
+                    <p class="confidence">Confidence: {{ classification.confidence }}</p>
+                    <div class="prediction-container">
+                        {% for label, prediction in classification.labels.items() %}
+                            <p>{{ label }} confidence : {{ prediction.confidence }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <a href="{{ url_for('index') }}" class="back-link">Go back to the main page</a>
+    </container>
+</body>
+</html>

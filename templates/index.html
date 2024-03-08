@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Classification Demo</title>
+</head>
+<body>
+    <h1>Text Classification Demo</h1>
+    <form method="post" action="{{ url_for('classify') }}">
+        <label for="text">Enter Text:</label>
+        <input type="text" name="text" id="text" required>
+        <input type="submit" value="Classify">
+    </form>
+</body>
+</html>
